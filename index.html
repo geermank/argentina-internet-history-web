@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <title>The history of the Internet in Argentina</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 
 <body>
@@ -27,10 +28,14 @@
         <div class="hero-overlay"></div>
         <div class="hero-content text-neutral-content text-center">
             <div class="max-w-lg">
-                <h1 class="mb-5 text-5xl font-bold">The history of the Internet in Argentina</h1>
+                <h1 class="mb-5 text-5xl font-bold">
+                    <span class="underline">
+                        The history of the Internet in Argentina
+                    </span>
+                </h1>
                 <p class="mb-5">
-                    Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                    quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    An in-depth look at how Argentina went from its first internet connection in 1994 to a fully connected nation,
+                    exploring the milestones, challenges, and innovations along the way
                 </p>
                 <button class="btn bg-[#74ACDF] hover:bg-[#627BA8] border-none text-white">Get Started</button>
             </div>
@@ -39,63 +44,17 @@
 
     <!-- The internet in Argentina in numbers cards section -->
     <section class="max-w bg-base-100 pt-12 pb-12">
+
         <!-- Section title -->
         <h2 class="text-4xl font-bold text-center">The Internet in Argentina in Numbers</h1>
 
             <!-- Section "false carousel" of numeric facts -->
             <section class="max-w-6xl mx-auto pt-8">
-                <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
 
-                    <!-- Card 1 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">Internet speed evolution</h2>
-                            <p>100 Mbps average speed in 2025, compared to just 0.05 Mbps in 2000</p>
-                        </div>
-                    </div>
+                <!-- Numeric facts container will be populated using Handlebars template engine -->
+                <!-- this data comes the BE -->
+                <div id="numeric-facts-container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3"></div>
 
-                    <!-- Card 2 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">Internet access growth</h2>
-                            <p>92% household penetration in 2025, up from 7% in 2000</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">Public Wi-Fi Expansion</h2>
-                            <p>Over 20,000 public Wi-Fi hotspots available nationwide by 2025.</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">Mobile Internet Adoption</h2>
-                            <p>Over 85% of Argentinians access the internet via mobile devices as of 2025</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">Fiber Optic Growth</h2>
-                            <p>More than 5 million households connected to fiber-to-the-home (FTTH) networks by 2025</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="card card-lg bg-base-100 shadow-sm">
-                        <div class="card-body">
-                            <h2 class="card-title">E-commerce Surge</h2>
-                            <p>Online sales exceeded USD 15 billion in 2023, reflecting a rapid shift to digital
-                                shopping</p>
-                        </div>
-                    </div>
-
-                </div>
             </section>
     </section>
 
@@ -104,56 +63,10 @@
         <!-- Section title -->
         <h2 class="text-4xl font-bold text-center">Key facts about the Internet in Argentina</h1>
 
-            <!-- Section "false carousel" of key facts -->
+            <!-- Key facts container will be populated using Handlebars template engine -->
+            <!-- this data comes the BE -->
             <section class="max-w-6xl mx-auto pt-8">
-                <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
-
-                    <!-- Card 1 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/cybercafes.jpg"
-                                alt="Cybercafes in Argentina" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">The Cybercafé Era</h2>
-                            <p>
-                                Argentina’s early internet growth was heavily driven by cybercafés,
-                                which made access affordable for many during the late 1990s and early 2000s
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/internet_cable.jpg"
-                                alt="The submarine cable that connects Argentina to the rest of the world" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">Argentina’s Internet Gateway</h2>
-                            <p>
-                                Located in the coastal town of Las Toninas, Buenos Aires Province,
-                                this hub receives nearly all of Argentina’s submarine fiber optic cables,
-                                acting as the primary entry point for international internet traffic.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/arsat.jpg" alt="ARSAT" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">National Satellite Infrastructure</h2>
-                            <p>
-                                The government-owned company ARSAT manages national satellites and infrastructure to
-                                improve connectivity,
-                                especially in rural areas
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div id="key-facts-container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3"></div>
             </section>
     </section>
 
@@ -170,4 +83,69 @@
                 <p>Copyright © 2025 - All right reserved</p>
             </aside>
     </footer>
+
+    <script type="module" src="scripts/home.js"></script>
 </body>
+
+<!-- SECTION: HOME TEMPLATES -->
+<!-- Home loading template -->
+<script id="home-loading-template" type="text/x-handlebars-template">
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+</script>
+
+<!-- Home error template -->
+<script id="home-error-template" type="text/x-handlebars-template">
+    <div></div>
+    <div role="alert" class="alert alert-error alert-soft">
+        <span>Something went wrong! Try again later</span>
+    </div>
+    <div></div>
+</script>
+
+<!-- Template: Numeric facts about the Internet in Argentina -->
+<script id="numeric-facts-section-template" type="text/x-handlebars-template">
+    {{#if loading}}
+        {{> HomeLoading}}
+    {{else if error}}
+        {{> HomeError}}
+    {{else}}
+        {{#each data.facts}}
+        <div class="card card-lg bg-base-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">{{title}}</h2>
+                <p>{{subtitle}}</p>
+            </div>
+        </div>
+        {{/each}}
+    {{/if}}
+</script>
+
+<!-- Template: Key facts about the Internet in Argentina -->
+<script id="key-facts-section-template" type="text/x-handlebars-template">
+    {{#if loading}}
+        {{> HomeLoading}}
+    {{else if error}}
+        {{> HomeError}}
+    {{else}}
+        {{#each data.facts}}
+        <div class="card bg-base-100 shadow-sm">
+            <figure class="h-48 overflow-hidden">
+                <img class="w-full h-full object-cover" src={{localAsset}} alt={{imageContentDescription}} />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">{{title}}</h2>
+                <p>{{subtitle}}</p>
+            </div>
+        </div>
+        {{/each}}
+    {{/if}}
+</script>
+</html>
