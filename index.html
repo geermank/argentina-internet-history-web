@@ -40,14 +40,17 @@
 
     <!-- The internet in Argentina in numbers cards section -->
     <section class="max-w bg-base-100 pt-12 pb-12">
+
         <!-- Section title -->
         <h2 class="text-4xl font-bold text-center">The Internet in Argentina in Numbers</h1>
 
             <!-- Section "false carousel" of numeric facts -->
             <section class="max-w-6xl mx-auto pt-8">
+
                 <!-- Numeric facts container will be populated using Handlebars template engine -->
                 <!-- this data comes the BE -->
                 <div id="numeric-facts-container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3"></div>
+
             </section>
     </section>
 
@@ -123,19 +126,32 @@
             </aside>
     </footer>
 
-    <script src="home-script.js"></script>
+    <script src="scripts/home-script.js"></script>
 </body>
 
 <!-- SECTION: HOME TEMPLATES -->
 <!-- Section "false carousel" of numeric facts -->
 <div id="numeric-facts-section-template">
-    {{#each facts}}
-    <div class="card card-lg bg-base-100 shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title">{{title}}</h2>
-            <p>{{subtitle}}</p>
+    {{#if loaded}}
+        {{#each facts}}
+        <div class="card card-lg bg-base-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">{{title}}</h2>
+                <p>{{subtitle}}</p>
+            </div>
         </div>
+        {{/each}}
+    {{else}}
+    <!-- add multiple loadings in order to show one on each column -->
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
     </div>
-    {{/each}}
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    {{/if}}
 </div>
 </html>
