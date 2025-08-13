@@ -113,7 +113,7 @@
     {{else if error}}
         {{> HomeError}}
     {{else}}
-        {{#each facts}}
+        {{#each data.facts}}
         <div class="card card-lg bg-base-100 shadow-sm">
             <div class="card-body">
                 <h2 class="card-title">{{title}}</h2>
@@ -131,7 +131,7 @@
     {{else if error}}
         {{> HomeError}}
     {{else}}
-        {{#each facts}}
+        {{#each data.facts}}
         <div class="card bg-base-100 shadow-sm">
             <figure class="h-48 overflow-hidden">
                 <img class="w-full h-full object-cover" src={{localAsset}} alt={{imageContentDescription}} />
