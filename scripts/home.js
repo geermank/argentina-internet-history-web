@@ -6,26 +6,29 @@ import { HOME_KEY_FACTS_ENDPOINT } from './apiResources.js'
  * loading data from the API
  */
 document.addEventListener("DOMContentLoaded", () => {
+    loadGenericTemplates();
     loadHomeSection(
         HOME_NUMERIC_FACTS_ENDPOINT,
         'numeric-facts-section-template',
         'numeric-facts-container'
-    )
+    );
     loadHomeSection(
         HOME_KEY_FACTS_ENDPOINT,
         'key-facts-section-template',
         'key-facts-container'
-    )
+    );
 });
 
-function loadHomeSection(endpoint, templateId, containerId) {
+function loadGenericTemplates() {
     // load partial templates. These help us to reuse loading and error designs
     // in all required sections, avoiding repetition of code
     const homeLoadingTemplate = document.getElementById('home-loading-template').innerHTML
     const homeErrorTemplate = document.getElementById('home-error-template').innerHTML
     Handlebars.registerPartial('HomeLoading', homeLoadingTemplate)
     Handlebars.registerPartial('HomeError', homeErrorTemplate)
+};
 
+function loadHomeSection(endpoint, templateId, containerId) {
     // load the template using handlebars
     const template = Handlebars.compile(document.getElementById(templateId).innerHTML);
 
@@ -46,4 +49,4 @@ function loadHomeSection(endpoint, templateId, containerId) {
 
     // in the meantime, while data loads, show loading indicators in the webpage
     render({ loading: true, error: false, data: null });
-}
+};
