@@ -59,56 +59,10 @@
         <!-- Section title -->
         <h2 class="text-4xl font-bold text-center">Key facts about the Internet in Argentina</h1>
 
-            <!-- Section "false carousel" of key facts -->
+            <!-- Key facts container will be populated using Handlebars template engine -->
+            <!-- this data comes the BE -->
             <section class="max-w-6xl mx-auto pt-8">
-                <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
-
-                    <!-- Card 1 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/cybercafes.jpg"
-                                alt="Cybercafes in Argentina" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">The Cybercafé Era</h2>
-                            <p>
-                                Argentina’s early internet growth was heavily driven by cybercafés,
-                                which made access affordable for many during the late 1990s and early 2000s
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/internet_cable.jpg"
-                                alt="The submarine cable that connects Argentina to the rest of the world" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">Argentina’s Internet Gateway</h2>
-                            <p>
-                                Located in the coastal town of Las Toninas, Buenos Aires Province,
-                                this hub receives nearly all of Argentina’s submarine fiber optic cables,
-                                acting as the primary entry point for international internet traffic.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="card bg-base-100 shadow-sm">
-                        <figure class="h-48 overflow-hidden">
-                            <img class="w-full h-full object-cover" src="assets/arsat.jpg" alt="ARSAT" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">National Satellite Infrastructure</h2>
-                            <p>
-                                The government-owned company ARSAT manages national satellites and infrastructure to
-                                improve connectivity,
-                                especially in rural areas
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div id="key-facts-container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3"></div>
             </section>
     </section>
 
@@ -126,13 +80,39 @@
             </aside>
     </footer>
 
-    <script src="scripts/home.js"></script>
+    <script type="module" src="scripts/home.js"></script>
 </body>
 
 <!-- SECTION: HOME TEMPLATES -->
-<!-- Section "false carousel" of numeric facts -->
-<div id="numeric-facts-section-template">
-    {{#if loaded}}
+<!-- Home loading template -->
+<script id="home-loading-template" type="text/x-handlebars-template">
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+    <div class="flex justify-center">
+        <span class="loading loading-infinity loading-xl"></span>
+    </div>
+</script>
+
+<!-- Home error template -->
+<script id="home-error-template" type="text/x-handlebars-template">
+    <div></div>
+    <div role="alert" class="alert alert-error alert-soft">
+        <span>Something went wrong! Try again later</span>
+    </div>
+    <div></div>
+</script>
+
+<!-- Template: Numeric facts about the Internet in Argentina -->
+<script id="numeric-facts-section-template" type="text/x-handlebars-template">
+    {{#if loading}}
+        {{> HomeLoading}}
+    {{else if error}}
+        {{> HomeError}}
+    {{else}}
         {{#each facts}}
         <div class="card card-lg bg-base-100 shadow-sm">
             <div class="card-body">
@@ -141,17 +121,27 @@
             </div>
         </div>
         {{/each}}
-    {{else}}
-    <!-- add multiple loadings in order to show one on each column -->
-    <div class="flex justify-center">
-        <span class="loading loading-infinity loading-xl"></span>
-    </div>
-    <div class="flex justify-center">
-        <span class="loading loading-infinity loading-xl"></span>
-    </div>
-    <div class="flex justify-center">
-        <span class="loading loading-infinity loading-xl"></span>
-    </div>
     {{/if}}
-</div>
+</script>
+
+<!-- Template: Key facts about the Internet in Argentina -->
+<script id="key-facts-section-template" type="text/x-handlebars-template">
+    {{#if loading}}
+        {{> HomeLoading}}
+    {{else if error}}
+        {{> HomeError}}
+    {{else}}
+        {{#each facts}}
+        <div class="card bg-base-100 shadow-sm">
+            <figure class="h-48 overflow-hidden">
+                <img class="w-full h-full object-cover" src={{localAsset}} alt={{imageContentDescription}} />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">{{title}}</h2>
+                <p>{{subtitle}}</p>
+            </div>
+        </div>
+        {{/each}}
+    {{/if}}
+</script>
 </html>
