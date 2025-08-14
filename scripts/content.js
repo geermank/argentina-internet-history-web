@@ -18,6 +18,7 @@ export async function loadContentPage(endpoint, containerId) {
     const navbarTemplate = compileTemplate(templatesDocument, "navbar-template");
     const titleTemplate = compileTemplate(templatesDocument, "title-template");
     const paragraphTemplate = compileTemplate(templatesDocument, "paragraph-template");
+    const verticalSpaceTemplate = compileTemplate(templatesDocument, "space-template");
     const loadingTemplate = compileTemplate(templatesDocument, "loading-template");
     const errorTemplate = compileTemplate(templatesDocument, "error-template");
 
@@ -33,7 +34,8 @@ export async function loadContentPage(endpoint, containerId) {
             const sduiMapper = {
                 navbar: (templateData) => navbarTemplate(templateData),
                 title: (templateData) => titleTemplate(templateData),
-                paragraph: (templateData) => paragraphTemplate(templateData)
+                paragraph: (templateData) => paragraphTemplate(templateData),
+                space: (templateData) => verticalSpaceTemplate(templateData)
             };
 
             // set the title of the page
