@@ -17,6 +17,7 @@ export async function loadContentPage(endpoint, containerId) {
     const templatesDocument = await loadSDUITemplatesDocument("sdui/components.html");
     const navbarTemplate = compileTemplate(templatesDocument, "navbar-template");
     const titleTemplate = compileTemplate(templatesDocument, "title-template");
+    const subtitleTemplate = compileTemplate(templatesDocument, "subtitle-template");
     const paragraphTemplate = compileTemplate(templatesDocument, "paragraph-template");
     const verticalSpaceTemplate = compileTemplate(templatesDocument, "space-template");
     const loadingTemplate = compileTemplate(templatesDocument, "loading-template");
@@ -34,6 +35,7 @@ export async function loadContentPage(endpoint, containerId) {
             const sduiMapper = {
                 navbar: (templateData) => navbarTemplate(templateData),
                 title: (templateData) => titleTemplate(templateData),
+                subtitle: (templateData) => subtitleTemplate(templateData),
                 paragraph: (templateData) => paragraphTemplate(templateData),
                 space: (templateData) => verticalSpaceTemplate(templateData)
             };

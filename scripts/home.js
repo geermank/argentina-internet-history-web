@@ -1,5 +1,5 @@
-import { HOME_NUMERIC_FACTS_ENDPOINT } from './apiResources.js'
-import { HOME_KEY_FACTS_ENDPOINT } from './apiResources.js'
+import { HOME_NUMERIC_FACTS_ENDPOINT } from './apiConstants.js'
+import { HOME_KEY_FACTS_ENDPOINT } from './apiConstants.js'
 
 /**
  * DOMContentLoaded event listener to load numeric and key facts sections, 
@@ -21,7 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadGenericTemplates() {
     // load partial templates. These help us to reuse loading and error designs
-    // in all required sections, avoiding repetition of code
+    // in all required sections, avoiding repetition of code. I wanted to avoid
+    // using the sdui templates here, just to show a different approach of using
+    // templates and not mixing things
     const homeLoadingTemplate = document.getElementById('home-loading-template').innerHTML
     const homeErrorTemplate = document.getElementById('home-error-template').innerHTML
     Handlebars.registerPartial('HomeLoading', homeLoadingTemplate)
