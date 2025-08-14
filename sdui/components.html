@@ -61,27 +61,33 @@
 
 <!-- TIMELINE -->
 <script id="timeline-template" type="text/x-handlebars-template">
-    <ul class="timeline timeline-vertical">
-    {{#each milestones}}
+  <section class="px-4">
+    <ul class="timeline timeline-vertical lg:timeline-horizontal">
+      {{#each milestones}}
         <li>
+          {{#unless @first}}
             <hr/>
+          {{/unless}}
+
+          {{#isEven @index}}
+            <div class="timeline-start timeline-box">{{text}}</div>
+            <div class="timeline-middle">
+              {{> IconCheck}}
+            </div>
+            <div class="timeline-end">{{year}}</div>
+          {{else}}
             <div class="timeline-start">{{year}}</div>
             <div class="timeline-middle">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    class="h-5 w-5">
-                    <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                        clip-rule="evenodd"
-                    />
-                </svg>
+              {{> IconCheck}}
             </div>
             <div class="timeline-end timeline-box">{{text}}</div>
+          {{/isEven}}
+
+          {{#unless @last}}
             <hr/>
+          {{/unless}}
         </li>
-    {{/each}}
+      {{/each}}
     </ul>
- </script>
+  </section>
+</script>
