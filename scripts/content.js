@@ -22,6 +22,11 @@ export async function loadContentPage(endpoint, containerId) {
     const verticalSpaceTemplate = compileTemplate(templatesDocument, "space-template");
     const loadingTemplate = compileTemplate(templatesDocument, "loading-template");
     const errorTemplate = compileTemplate(templatesDocument, "error-template");
+    const timelineTemplate = compileTemplate(templatesDocument, "timeline-template");
+
+    // needed for some templates to work properly. 
+    // Tried a couple of alternatives, but couldn't make it work other way
+    registerPartialsAndHelpers();
 
     const container = document.getElementById(containerId);
     container.innerHTML = "";
@@ -37,7 +42,8 @@ export async function loadContentPage(endpoint, containerId) {
                 title: (templateData) => titleTemplate(templateData),
                 subtitle: (templateData) => subtitleTemplate(templateData),
                 paragraph: (templateData) => paragraphTemplate(templateData),
-                space: (templateData) => verticalSpaceTemplate(templateData)
+                space: (templateData) => verticalSpaceTemplate(templateData),
+                timeline: (templateData) => timelineTemplate(templateData)
             };
 
             // set the title of the page
@@ -74,4 +80,29 @@ export async function loadContentPage(endpoint, containerId) {
             // show error template in case of error
             container.innerHTML = errorTemplate({ message: "Something went wrong. Please try again later." });
         })
+}
+
+function registerPartialsAndHelpers() {
+    Handlebars.registerPartial(
+        'IconCheck',
+         `
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="h-5 w-5">
+                <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                    clip-rule="evenodd"
+                />
+            </svg>
+      `
+    );
+    Handlebars.registerHelper(
+        'isEven',
+         function(value, options) {
+            return (value % 2 === 0) ? options.fn(this) : options.inverse(this);
+        }
+    );
 }

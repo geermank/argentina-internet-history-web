@@ -58,3 +58,36 @@
 <script id="space-template" type="text/x-handlebars-template">
     <div class="h-{{size}}"></div>
 </script>
+
+<!-- TIMELINE -->
+<script id="timeline-template" type="text/x-handlebars-template">
+  <section class="px-4">
+    <ul class="timeline timeline-vertical lg:timeline-horizontal">
+      {{#each milestones}}
+        <li>
+          {{#unless @first}}
+            <hr/>
+          {{/unless}}
+
+          {{#isEven @index}}
+            <div class="timeline-start timeline-box">{{text}}</div>
+            <div class="timeline-middle">
+              {{> IconCheck}}
+            </div>
+            <div class="timeline-end">{{year}}</div>
+          {{else}}
+            <div class="timeline-start">{{year}}</div>
+            <div class="timeline-middle">
+              {{> IconCheck}}
+            </div>
+            <div class="timeline-end timeline-box">{{text}}</div>
+          {{/isEven}}
+
+          {{#unless @last}}
+            <hr/>
+          {{/unless}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</script>
