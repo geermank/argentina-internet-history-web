@@ -1,4 +1,4 @@
-import { CONTENT_EARLY_YEARS_ENDPOINT } from './apiResources.js'
+import { CONTENT_EARLY_YEARS_ENDPOINT } from './apiConstants.js'
 import { loadContentPage } from './content.js';
 
 /**
