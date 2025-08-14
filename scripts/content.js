@@ -22,6 +22,7 @@ export async function loadContentPage(endpoint, containerId) {
     const verticalSpaceTemplate = compileTemplate(templatesDocument, "space-template");
     const loadingTemplate = compileTemplate(templatesDocument, "loading-template");
     const errorTemplate = compileTemplate(templatesDocument, "error-template");
+    const timelineTemplate = compileTemplate(templatesDocument, "timeline-template");
 
     const container = document.getElementById(containerId);
     container.innerHTML = "";
@@ -37,7 +38,8 @@ export async function loadContentPage(endpoint, containerId) {
                 title: (templateData) => titleTemplate(templateData),
                 subtitle: (templateData) => subtitleTemplate(templateData),
                 paragraph: (templateData) => paragraphTemplate(templateData),
-                space: (templateData) => verticalSpaceTemplate(templateData)
+                space: (templateData) => verticalSpaceTemplate(templateData),
+                timeline: (templateData) => timelineTemplate(templateData)
             };
 
             // set the title of the page
