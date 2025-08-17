@@ -1,4 +1,6 @@
 export async function loadContentPage(endpoint, containerId) {
+    registerPartialsAndHelpers();
+
     // auxiliary function to load templates
     // use async function here to avoid callback hell, since we have quite a few templates
     async function loadSDUITemplatesDocument(url) {
@@ -24,10 +26,6 @@ export async function loadContentPage(endpoint, containerId) {
     const errorTemplate = compileTemplate(templatesDocument, "error-template");
     const timelineTemplate = compileTemplate(templatesDocument, "timeline-template");
 
-    // needed for some templates to work properly. 
-    // Tried a couple of alternatives, but couldn't make it work other way
-    registerPartialsAndHelpers();
-
     const container = document.getElementById(containerId);
     container.innerHTML = "";
 
@@ -37,6 +35,7 @@ export async function loadContentPage(endpoint, containerId) {
     fetch(endpoint)
         .then(response => response.json())
         .then(jsonResponse => {
+            // maps a 'type' value recived in the SDUI response, to a handlebars template function
             const sduiMapper = {
                 navbar: (templateData) => navbarTemplate(templateData),
                 title: (templateData) => titleTemplate(templateData),
@@ -60,6 +59,7 @@ export async function loadContentPage(endpoint, containerId) {
                 container.insertAdjacentHTML("beforeend", sduiMapper[navbarBlock.type](navbarBlock.data));
             }
 
+            // iterate SDUI components, map them to a template and rendered it in the given container
             for (const block of jsonResponse.page.content) {
                 if (block.type === "navbar") 
                     // already added
@@ -67,7 +67,7 @@ export async function loadContentPage(endpoint, containerId) {
 
                 const renderFunction = sduiMapper[block.type];
                 if (!renderFunction) {
-                    // unknown template
+                    // unknown template, go on without failing
                     console.warn(`No template for type "${block.type}"`);
                     continue;
                 }
@@ -83,6 +83,9 @@ export async function loadContentPage(endpoint, containerId) {
 }
 
 function registerPartialsAndHelpers() {
+    // needed for some templates to work properly. 
+    // kinda hacky, but tried a couple of alternatives and couldn't make it work other way
+    // this is needed to show the checkmark svg in milestone SDUI component
     Handlebars.registerPartial(
         'IconCheck',
          `
@@ -99,6 +102,8 @@ function registerPartialsAndHelpers() {
             </svg>
       `
     );
+    // isEven is a helper function to use in handlebars templates while iterating a collection
+    // returns true if the current index is even, false otherwise 
     Handlebars.registerHelper(
         'isEven',
          function(value, options) {

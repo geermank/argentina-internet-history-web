@@ -66,9 +66,11 @@
       {{#each milestones}}
         <li>
           {{#unless @first}}
+            <!-- avoid adding a line above the first item -->
             <hr/>
           {{/unless}}
 
+          <!-- show milestone text alternating from top to bottom of the line -->
           {{#isEven @index}}
             <div class="timeline-start timeline-box">{{text}}</div>
             <div class="timeline-middle">
@@ -84,6 +86,7 @@
           {{/isEven}}
 
           {{#unless @last}}
+            <!-- avoid adding a line below the last item -->
             <hr/>
           {{/unless}}
         </li>
